@@ -15,7 +15,7 @@ public class EmployeeDao implements IEmployeeDao{
 	private static Connection con;
 	static {
 		try {
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/DEPARTMENT","root","Ayush@2003");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/DEPARTMENT","root","1234");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -139,3 +139,4 @@ public class EmployeeDao implements IEmployeeDao{
 		
 	}
 }
+

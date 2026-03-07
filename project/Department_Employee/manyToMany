@@ -1,0 +1,32 @@
+//////// for many to many  there are 2 ways :-
+
+ 1 way ...................................................................
+ 
+Student st = new Student("Manish");
+Set<Integer> course = new HashSet<>();
+Course cou1 = new Course("maths");     // cretae a object of course to add in couse table 
+Course cou2 = new Course("science");
+
+em.persist(cou1); //////// we are adding or persist into course table ;
+em.persist(cou2);
+
+course( cou1);// we are adding new data in set 
+course( cou2);
+
+em.persist(st);
+
+em.getTransaction().commit();
+
+2 way ............................................( if course is alresdy persist( exist ) into second table )
+Student st = new Student("Manish");
+Set<Integer> course = new HashSet<>();
+Course c = em.find(course.class,2);
+
+
+
+
+3 way ----------------------------------------------------------------------------------------
+@manyToMany
+@joinTable(naem="student-couse", joinColumn = @JoinColumn(name="student_Id"),inverseJoinColumns=@joinColumn(name="course_Id")
+// joinColumn is used to set what will be column name after join;
+

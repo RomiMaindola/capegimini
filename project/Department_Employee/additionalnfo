@@ -1,0 +1,175 @@
+this is jpa file in which we are using one to many maapping by unidirection   .
+ 
+
+for the bidirection what wee will do 
+
+in emploee 
+we will create a department refernce to hold department 
+department dep;
+
+
+== in constructure of employee we are passing the department object in main method
+
+public Employee( String emp_name, String designation,\Department dep) {
+
+        Emp_name = emp_name;
+        this.designation = designation;
+        this.dep = dep;
+    }
+
+======== in deppartment class we will do 
+ @OneToMany(mappedBy="deptId"// instant relation available in other table (bidirection )// ,cascade = CascadeType.ALL)
+
+======== in employe class
+we will write 
+@manyToOne 
+JoinColumn(name ="deptId");          //// join by which column 
+private department dept;             /// addng column in the department object
+
+
+=========================================================================================================================================================================
+employe class
+
+package com.cg.oneTomany;
+
+import com.cg.one_to_one.Answer;
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int empid;
+    private String ename;
+    private double salary;
+   @ManyToOne
+   @JoinColumn(name = "deptid")
+    private Department dept;
+    public Employee(){
+
+    }
+    public Employee(String ename,Department dept){
+        this.dept = dept;
+        this.ename = ename;
+
+    }
+    public int getEmpid() {
+        return empid;
+    }
+
+    public void setEmpid(int empid) {
+        this.empid = empid;
+    }
+
+    public String getEname() {
+        return ename;
+    }
+
+    public void setEname(String ename) {
+        this.ename = ename;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+}
+====================================================================================================================================================================
+depatment class 
+
+package com.cg.oneTomany;
+
+import jakarta.persistence.*;
+
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
+import java.util.List;
+
+@Entity
+public class Department {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int deptid;
+    private String loc;
+    private String deptname;
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    @OneToMany(mappedBy = "dept", cascade = CascadeType.ALL)
+    List<Employee> employees;
+
+public int getDeptid() {
+    return deptid;
+}
+
+    public void setDeptid(int deptid) {
+        this.deptid = deptid;
+    }
+
+    public String getDeptname() {
+        return deptname;
+    }
+
+    public void setDeptname(String deptname) {
+        this.deptname = deptname;
+    }
+    public String getLoc() {
+        return loc;
+    }
+
+    public void setLoc(String loc) {
+        this.loc = loc;
+    }
+
+ public Department(){
+
+ }
+ public Department(String loc, String deptname){
+    this.deptname = deptname;
+    this.loc = loc;
+ }
+}
+
+==================================================================================================================================================================
+
+main class
+
+package com.cg.oneTomany;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DepartmentMain {
+    public static  void main(String[] args){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-pu");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Department department = new Department("Design","chennai");
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee("Raj",department));
+        employees.add(new Employee("Rahul",department));
+        department.setEmployees(employees);
+        em.persist(department);
+        em.getTransaction().commit();
+    }
+}
+
+
+
+
+
+

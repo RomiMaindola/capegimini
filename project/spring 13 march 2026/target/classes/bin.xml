@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+    <bean id="hello" class="org.example.bean.HelloWorld" scope="prototype">
+<!--    setter method and call setter method
+    <property name="name" value="romi"></property>-->
+
+<!--   constructor call
+    <constructor-arg name="name" value="romi"></constructor-arg>-->
+
+        <property name="language">
+            <list>
+                <value>hindi</value>
+                <value>english</value>
+            </list>
+        </property>
+    </bean>
+    <context:annotation-config/>
+    <bean id="emp" class ="org.example.bean.Employee">
+        <constructor-arg name="name" value="romi"/>
+        <constructor-arg name="empId" value="123"/>
+<!--        <constructor-arg name="address" ref="add"/>-->
+
+    </bean>
+    <bean id="add" class ="org.example.bean.Address">
+        <constructor-arg name="city" value="haridwar"/>
+        <constructor-arg name="country" value="India"/>
+    </bean>
+
+
+
+</beans>

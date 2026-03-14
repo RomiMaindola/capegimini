@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+    <context:annotation-config/>
+
+
+<!--  manually  creting aobject of all
+   <bean id="jk" class="org.example.bean.JKTyre" />-->
+<!--    <bean id="cng" class="org.example.bean.CNG"/>-->
+<!--    <bean id="petrol" class="org.example.bean.Petrol"/>-->
+<!--    <bean id="mrf" class="org.example.bean.MRFTyre"/>-->
+<!--    <bean id="car" class="org.example.bean.Car">-->
+<!--        <property name="name" value="maruti"/>-->
+<!--    </bean>-->
+
+<!--    we have to write the component scan and then write @component in those class which bean we want to make -->
+    <context:component-scan base-package="org.example"/>
+    <context:property-placeholder location="classpath:data.properties"/>
+
+
+
+
+</beans>

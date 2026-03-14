@@ -13,11 +13,25 @@
         <property name="age" value="30"/>
 
     </bean>
+    <bean id="emp1" class ="org.example.beans.Employee">
+        <property name="empId" value="102"/>
+        <property name="name" value="Harry"/>
+        <property name="salary" value="40000.0"/>
+        <property name="age" value="30"/>
+
+    </bean>
     <bean id="sbu" class ="org.example.beans.SBU">
        <property name="subId" value="10"/>
         <property name="sbuName" value="Product Engineering Services"/>
         <property name="sbuHead" value="kiran Rao"/>
+        <property name="emp">
+            <list>
+                <ref bean="emp"/>
+                <ref bean="emp1"/>
+            </list>
+        </property>
     </bean>
+
 
 
 

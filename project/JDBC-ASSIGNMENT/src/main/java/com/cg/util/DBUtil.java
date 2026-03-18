@@ -9,7 +9,7 @@ public class DBUtil {
 
     public static Connection getConnection() throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/TestDB","root","Ayush@2003"
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/TestDB","root","1234"
         );
     }
 }
